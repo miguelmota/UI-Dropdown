@@ -2320,9 +2320,11 @@ module.exports = function(parameters) {
               module.debug('Animating in label', $label);
               $label
                 .addClass(className.hidden)
-                .insertBefore($next)
-                .transition(settings.label.transition, settings.label.duration)
-              ;
+                .insertBefore($next);
+
+              if ($.fn.transition !== undefined && $module.transition('is supported')) {
+                $label.transition(settings.label.transition, settings.label.duration);
+              }
             }
             else {
               module.debug('Adding selection label', $label);
